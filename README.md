@@ -9,4 +9,4 @@ You can change IP addresses inside 'hosts' file to your server IP's. Then you ca
 ```bash
 $ ansible-playbook launch.yml
 ```
-NOTE: IP addresses in hosts file belongs to test servers. They don't exist anymore. At least for me. :)
+NOTE: IP addresses in hosts file belongs to my test servers. They don't exist anymore. At least for me. :)
