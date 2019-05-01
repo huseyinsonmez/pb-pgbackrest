@@ -1,0 +1,12 @@
+---
+
+- name: pgBackRest Servers
+  hosts: pgbackrest
+  become: true
+  become_user: root
+  become_method: sudo
+
+  tasks:
+    - include: tasks/postgresql.yml
+    - include: tasks/passwordless.yml
+    - include: tasks/pgbackrest.yml

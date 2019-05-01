@@ -1,0 +1,8 @@
+[all:vars]
+ansible_connection=ssh
+ansible_ssh_user=root
+
+[pgbackrest]
+primary ansible_host=167.99.85.41
+standby ansible_host=178.62.106.143
+backup ansible_host=68.183.40.100

@@ -1,0 +1,36 @@
+---
+
+- name: Installing pgBackRest RPM package
+  yum:
+    name:
+      - pgbackrest
+    state: present
+
+- name: Copying configuration files to servers (/etc/pgbackrest.conf)
+  template:
+    src: files/pgbackrest-{{ inventory_hostname }}.conf
+    dest: /etc/pgbackrest.conf
+    owner: postgres
+    group: postgres
+    mode: 0600
+
+- name: Configuring permissions of pgBackrest backup directory (/var/lib/pgbackrest)
+  file:
+    dest: /var/lib/pgbackrest
+    recurse: yes
+    owner: postgres
+    group: postgres
+    mode: 0700
+
+- name: Configuring permissions of pgBackrest log directory (/var/log/pgbackrest)
+  file:
+    dest: /var/log/pgbackrest
+    recurse: yes
+    owner: postgres
+    group: postgres
+    mode: 0700
+
+- name: Creating pgBackrest stanza
+  become: yes
+  become_user: postgres
+  shell: "if [ backup == {{ inventory_hostname }} ]; then /usr/bin/pgbackrest --stanza=db-primary stanza-create; fi"
