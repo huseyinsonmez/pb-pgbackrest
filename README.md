@@ -15,8 +15,9 @@ Then in your "/var/lib/pgsql/11/data/postgresql.conf" file, you need to uncommen
 
 ```bash
 archive_mode = on
-archive_command = "/usr/bin/pgbackrest --stanza=db-primary archive-push %p
+archive_command = "/usr/bin/pgbackrest --stanza=db-primary archive-push %p"
 ```
 
 WARNING: Do not change hostnames in 'hosts' file because I added that names to playbook tasks. For now just change the IP adresses.
+
 NOTE: IP addresses in hosts file belongs to my test servers. They don't exist anymore. At least for me. :)
